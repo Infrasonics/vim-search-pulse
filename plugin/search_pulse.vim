@@ -5,6 +5,12 @@
 
 " Initial code from:
 " https://github.com/LStinson/Vim/blob/master/plugin/pulse.vim
+
+if exists('g:loaded_search_pulse') || &cp
+  finish
+endif
+let g:loaded_search_pulse = 1
+
 nnoremap
       \ <script>
       \ <Plug>Pulse <SID>Pulse
