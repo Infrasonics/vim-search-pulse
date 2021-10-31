@@ -1,3 +1,8 @@
+" Extracted from Initialize, so a reload can reset it. Necessary e.g. when
+" the background of the colorscheme changes and wants to have a different
+" highlight for CursorLine
+let s:oldc = synIDattr(synIDtrans(hlID('CursorLine')), 'bg')
+
 func! s:ScrubPattern(s)
   " ^ makes no sense for \%l or \%c patterns.
   let scrubbed_pattern = substitute(a:s, '\v^\^', '\1', '')
@@ -45,7 +50,6 @@ func! s:Initialize()
         \ get(g:, 'vim_search_pulse_mode', 'cursor_line')
 
   let s:highlight_arg = gui_running ? 'guibg' : 'ctermbg'
-  let s:oldc = synIDattr(synIDtrans(hlID('CursorLine')), 'bg')
 
   if s:oldc == -1 || s:oldc == ''
     let s:oldc = 'NONE'
